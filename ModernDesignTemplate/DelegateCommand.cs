@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Windows.Input;
 
-namespace TedTechVpn.UserInterface
+namespace ModernDesignTemplate
 {
     public delegate bool CommandCanExecute();
 
