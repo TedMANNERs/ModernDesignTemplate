@@ -1,9 +1,7 @@
-﻿using System;
-using System.ComponentModel;
+﻿using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Windows.Input;
 using ModernDesignTemplate.Annotations;
-using TedTechVpn.UserInterface;
 
 namespace ModernDesignTemplate
 {
@@ -11,13 +9,10 @@ namespace ModernDesignTemplate
     {
         public TestViewModel()
         {
-            string className = GetType().Name;
-            Name = className.Substring(0, className.IndexOf("ViewModel", StringComparison.Ordinal));
-            SwitchCommand = new DelegateCommand(obj => Switch.Invoke(this, "Home"), () => true);
+            SwitchCommand = new DelegateCommand(obj => Switch.Invoke(this, typeof(HomeViewModel)), () => true);
         }
 
         public ICommand SwitchCommand { get; set; }
-        public string Name { get; set; }
         public event ViewModelSwitcher.SwitchViewEventHandler Switch;
         public event PropertyChangedEventHandler PropertyChanged;
 

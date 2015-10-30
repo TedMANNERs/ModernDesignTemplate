@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
@@ -11,7 +12,7 @@ namespace ModernDesignTemplate
         private readonly IList<IViewModel> _viewModels;
         private IViewModel _currentView;
         public event PropertyChangedEventHandler PropertyChanged;
-        public delegate void SwitchViewEventHandler(object sender, string args);
+        public delegate void SwitchViewEventHandler(object sender, Type viewModel);
 
         public ViewModelSwitcher(IList<IViewModel> viewModels)
         {
@@ -37,9 +38,9 @@ namespace ModernDesignTemplate
             }
         }
 
-        public void Switch(object sender, string viewModelName)
+        public void Switch(object sender, Type viewModel)
         {
-            CurrentView = _viewModels.First(x => x.Name == viewModelName);
+            CurrentView = _viewModels.Single(x => x.GetType() == viewModel);
         }
 
         [NotifyPropertyChangedInvocator]
