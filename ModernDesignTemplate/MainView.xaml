@@ -1,0 +1,81 @@
+﻿<Window x:Class="ModernDesignTemplate.MainView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:namespace="clr-namespace:ModernDesignTemplate"
+        Title="MainView" Height="350" Width="525" Icon="Resources/Images/icon.ico"
+        WindowStyle="None" Style="{DynamicResource WindowStyle}">
+    <Window.DataContext>
+        <namespace:MainViewModel />
+    </Window.DataContext>
+    <Window.Resources>
+        <Style x:Key="WindowStyle" TargetType="{x:Type Window}">
+            <Setter Property="WindowChrome.WindowChrome">
+                <Setter.Value>
+                    <WindowChrome GlassFrameThickness="1" ResizeBorderThickness="5" CaptionHeight="30" />
+                </Setter.Value>
+            </Setter>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type namespace:MainView}">
+                        <Border BorderBrush="Transparent">
+                            <Border.Style>
+                                <Style TargetType="{x:Type Border}">
+                                    <Setter Property="BorderThickness" Value="0"/>
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=WindowState}" Value="Maximized">
+                                            <Setter Property="BorderThickness" Value="6px"/>
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </Border.Style>
+                            <Grid>
+                                <Border BorderThickness="1" BorderBrush="LightGray">
+                                    <Rectangle Fill="{TemplateBinding Background}"/>
+                                </Border>
+                                <ContentPresenter Content="{TemplateBinding Content}"/>
+                                <Image Source="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Icon}" Margin="10,10,0,0"
+                                       Width="20" Height="20" WindowChrome.IsHitTestVisibleInChrome="False" VerticalAlignment="Top" HorizontalAlignment="Left"/>
+                                <StackPanel Orientation="Horizontal" FlowDirection="RightToLeft" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,1,5,0">
+                                    <Button Height="30" Width="30" Margin="0" HorizontalAlignment="Right"
+                                            Click="WindowClose" WindowChrome.IsHitTestVisibleInChrome="True">
+                                        <Image Height="15" Source="Resources/Images/close.png"/>
+                                        <Button.Style>
+                                            <Style BasedOn="{StaticResource ButtonStyle}" TargetType="{x:Type Button}">
+                                                <Setter Property="Background" Value="LavenderBlush"/>
+                                                <Setter Property="Template">
+                                                    <Setter.Value>
+                                                        <ControlTemplate TargetType="{x:Type Button}">
+                                                            <Border Background="{TemplateBinding Background}">
+                                                                <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                                            </Border>
+                                                        </ControlTemplate>
+                                                    </Setter.Value>
+                                                </Setter>
+                                                <Style.Triggers>
+                                                    <Trigger Property="IsMouseOver" Value="True">
+                                                        <Setter Property="Background" Value="LightCoral"/>
+                                                    </Trigger>
+                                                </Style.Triggers>
+                                            </Style>
+                                        </Button.Style>
+                                    </Button>
+                                    <Button Height="30" Width="30" Margin="0" HorizontalAlignment="Right" Style="{StaticResource ButtonStyle}"
+                                            Click="WindowMaximizeRestore" WindowChrome.IsHitTestVisibleInChrome="True">
+                                        <Image Height="15" Source="Resources/Images/maximize.png" />
+                                    </Button>
+                                    <Button Height="30" Width="30" Margin="0" HorizontalAlignment="Right" Style="{StaticResource ButtonStyle}"
+                                            Click="WindowMinimize" WindowChrome.IsHitTestVisibleInChrome="True">
+                                        <Image Height="15" Source="Resources/Images/minimize.png" />
+                                    </Button>
+                                </StackPanel>
+                            </Grid>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
+    <Grid Margin="0, 30, 0, 0" >
+        <ContentControl Content="{Binding Switcher.CurrentView}"/>
+    </Grid>
+</Window>
