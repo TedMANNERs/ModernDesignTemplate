@@ -13,13 +13,14 @@ namespace ModernDesignTemplate
         private void App_OnStartup(object sender, StartupEventArgs e)
         {
             IDataTemplateManager manager = ApplicationKernel.Get<IDataTemplateManager>();
-            Assembly assembly = Assembly.GetExecutingAssembly();
-            Type[] types = assembly.GetTypes();
-            foreach (Type viewModel in types.Where(x => typeof(IViewModel).IsAssignableFrom(x) && !x.IsInterface))
+            foreach (Assembly assembly in AppDomain.CurrentDomain.GetAssemblies())
             {
-                string viewName = viewModel.Name.Replace("ViewModel", "View");
-                Type view = types.First(x => x.Name == viewName);
-                manager.RegisterDataTemplate(viewModel, view);
+                Type[] types = assembly.GetTypes();
+                foreach (Type viewModel in types.Where(x => typeof(IViewModel).IsAssignableFrom(x) && !x.IsInterface))
+                {
+                    string viewName = viewModel.Name.Replace("ViewModel", "View");
+                    manager.RegisterDataTemplate(viewModel, types.Single(x => x.Name == viewName));
+                }
             }
         }
     }

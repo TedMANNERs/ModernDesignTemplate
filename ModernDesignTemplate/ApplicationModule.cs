@@ -1,6 +1,5 @@
 using System;
 using System.Linq;
-using System.Reflection;
 using Ninject.Modules;
 
 namespace ModernDesignTemplate
@@ -12,8 +11,10 @@ namespace ModernDesignTemplate
             Bind<IViewModelSwitcher>().To<ViewModelSwitcher>();
             Bind<IDataTemplateManager>().To<DataTemplateManager>();
 
-            Assembly assembly = Assembly.GetExecutingAssembly();
-            foreach (Type viewModel in assembly.GetTypes().Where(x => typeof(IViewModel).IsAssignableFrom(x) && !x.IsInterface))
+            foreach (Type viewModel in AppDomain.CurrentDomain.GetAssemblies()
+                .SelectMany(
+                            assembly => assembly.GetTypes()
+                                .Where(x => typeof(IViewModel).IsAssignableFrom(x) && !x.IsInterface)))
             {
                 Bind<IViewModel>().To(viewModel);
             }
