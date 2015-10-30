@@ -2,7 +2,7 @@ using System.ComponentModel;
 
 namespace ModernDesignTemplate
 {
-    public interface IViewModel : INotifyPropertyChanged
+    public interface ISwitchableViewModel : INotifyPropertyChanged
     {
         event ViewModelSwitcher.SwitchViewEventHandler Switch;
     }

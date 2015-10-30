@@ -4,7 +4,7 @@ namespace ModernDesignTemplate
 {
     public interface IViewModelSwitcher
     {
-        IViewModel CurrentView { get; set; }
+        ISwitchableViewModel CurrentView { get; set; }
 
         void Switch(object sender, Type e);
     }

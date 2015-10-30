@@ -5,7 +5,7 @@ using ModernDesignTemplate.Annotations;
 
 namespace ModernDesignTemplate
 {
-    public class TestViewModel : IViewModel
+    public class TestViewModel : ISwitchableViewModel
     {
         public TestViewModel()
         {

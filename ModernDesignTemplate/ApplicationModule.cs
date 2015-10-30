@@ -14,9 +14,9 @@ namespace ModernDesignTemplate
             foreach (Type viewModel in AppDomain.CurrentDomain.GetAssemblies()
                 .SelectMany(
                             assembly => assembly.GetTypes()
-                                .Where(x => typeof(IViewModel).IsAssignableFrom(x) && !x.IsInterface)))
+                                .Where(x => typeof(ISwitchableViewModel).IsAssignableFrom(x) && !x.IsInterface)))
             {
-                Bind<IViewModel>().To(viewModel);
+                Bind<ISwitchableViewModel>().To(viewModel);
             }
         }
     }

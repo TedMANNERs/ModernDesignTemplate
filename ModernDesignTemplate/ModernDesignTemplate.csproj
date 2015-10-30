@@ -65,7 +65,7 @@
     </Compile>
     <Compile Include="HomeViewModel.cs" />
     <Compile Include="IDataTemplateManager.cs" />
-    <Compile Include="IViewmodel.cs" />
+    <Compile Include="ISwitchableViewModel.cs" />
     <Compile Include="SwitchViewEventArgs.cs" />
     <Compile Include="TestView.xaml.cs">
       <DependentUpon>TestView.xaml</DependentUpon>
