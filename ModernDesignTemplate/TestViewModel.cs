@@ -9,7 +9,7 @@ namespace ModernDesignTemplate
     {
         public TestViewModel()
         {
-            SwitchCommand = new DelegateCommand(obj => Switch.Invoke(this, typeof(HomeViewModel)), () => true);
+            SwitchCommand = new DelegateCommand(obj => Switch.Invoke(this, new SwitchViewEventArgs(typeof(HomeViewModel))), () => true);
         }
 
         public ICommand SwitchCommand { get; set; }

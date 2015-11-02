@@ -1,12 +1,14 @@
+using System;
+
 namespace ModernDesignTemplate
 {
-    public class SwitchViewEventArgs
+    public class SwitchViewEventArgs : EventArgs
     {
-        public SwitchViewEventArgs(string viewModelName)
+        public SwitchViewEventArgs(Type viewModelType)
         {
-            ViewModelName = viewModelName;
+            ViewModelType = viewModelType;
         }
 
-        public string ViewModelName { get; set; }
+        public Type ViewModelType { get; set; }
     }
 }
