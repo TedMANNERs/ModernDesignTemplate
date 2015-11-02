@@ -10,6 +10,7 @@ namespace ModernDesignTemplate
         public MainView()
         {
             InitializeComponent();
+            SourceInitialized += NativeMethods.OnSourceInitialized;
         }
 
         private void WindowMinimize(object sender, RoutedEventArgs e)
