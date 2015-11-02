@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
@@ -11,11 +12,13 @@ namespace ModernDesignTemplate
         public delegate void SwitchViewEventHandler(object sender, SwitchViewEventArgs e);
 
         private readonly IList<ISwitchableViewModel> _viewModels;
+        private readonly Type _defaultViewModel;
         private ISwitchableViewModel _currentView;
 
-        public ViewModelSwitcher(IList<ISwitchableViewModel> viewModels)
+        public ViewModelSwitcher(IList<ISwitchableViewModel> viewModels, Type defaultViewModel)
         {
             _viewModels = viewModels;
+            _defaultViewModel = defaultViewModel;
 
             foreach (ISwitchableViewModel viewModel in viewModels)
             {
@@ -27,7 +30,7 @@ namespace ModernDesignTemplate
 
         public ISwitchableViewModel CurrentView
         {
-            get { return _currentView ?? (_currentView = _viewModels.FirstOrDefault()); }
+            get { return _currentView ?? (_currentView = _viewModels.Single(x => x.GetType() == _defaultViewModel)); }
             set
             {
                 if (Equals(value, _currentView))

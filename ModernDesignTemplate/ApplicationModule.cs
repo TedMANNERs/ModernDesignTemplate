@@ -8,7 +8,7 @@ namespace ModernDesignTemplate
     {
         public override void Load()
         {
-            Bind<IViewModelSwitcher>().To<ViewModelSwitcher>();
+            Bind<IViewModelSwitcher>().To<ViewModelSwitcher>().WithConstructorArgument(typeof(HomeViewModel));
             Bind<IDataTemplateManager>().To<DataTemplateManager>();
 
             foreach (Type viewModel in AppDomain.CurrentDomain.GetAssemblies()
