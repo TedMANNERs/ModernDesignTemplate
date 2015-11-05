@@ -15,13 +15,20 @@ namespace ModernDesignTemplate
         private readonly Type _defaultViewModel;
         private ISwitchableViewModel _currentView;
 
-        public ViewModelSwitcher(IList<ISwitchableViewModel> viewModels, Type defaultViewModel)
+        public ViewModelSwitcher(IEnumerable<ISwitchableViewModel> viewModels, Type defaultViewModel)
         {
-            _viewModels = viewModels;
+            _viewModels = viewModels.ToList();
             _defaultViewModel = defaultViewModel;
 
-            foreach (ISwitchableViewModel viewModel in viewModels)
+            foreach (ISwitchableViewModel viewModel in _viewModels)
             {
+                //TODO: Add abstraction for the viewmodel collection (beware of circular dependency)
+                if (viewModel.GetType() == typeof(HomeViewModel))
+                {
+                    HomeViewModel homeViewModel = (HomeViewModel)viewModel;
+                    homeViewModel.ViewModels = _viewModels.Where(x => x != homeViewModel);
+                }
+
                 viewModel.Switch += Switch;
             }
         }

@@ -5,9 +5,9 @@ using ModernDesignTemplate.Annotations;
 
 namespace ModernDesignTemplate
 {
-    public class TestViewModel : ISwitchableViewModel
+    public class Test2ViewModel : ISwitchableViewModel
     {
-        public TestViewModel()
+        public Test2ViewModel()
         {
             SwitchCommand = new DelegateCommand(obj => Switch.Invoke(this, new SwitchViewEventArgs(GetType())), () => true);
             ReturnHomeCommand = new DelegateCommand(obj => Switch.Invoke(this, new SwitchViewEventArgs(typeof(HomeViewModel))), () => true);

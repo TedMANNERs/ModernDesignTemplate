@@ -68,9 +68,13 @@
     <Compile Include="ISwitchableViewModel.cs" />
     <Compile Include="NativeMethods.cs" />
     <Compile Include="SwitchViewEventArgs.cs" />
+    <Compile Include="Test2View.xaml.cs">
+      <DependentUpon>Test2View.xaml</DependentUpon>
+    </Compile>
     <Compile Include="TestView.xaml.cs">
       <DependentUpon>TestView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Test2ViewModel.cs" />
     <Compile Include="TestViewModel.cs" />
     <Compile Include="ViewModelSwitcher.cs" />
     <Page Include="HomeView.xaml">
@@ -91,6 +95,10 @@
       <DependentUpon>MainView.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Test2View.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="TestView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

@@ -5,8 +5,16 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
-    <Grid>
-        <Label Content="HomeView" FontSize="24" HorizontalAlignment="Center" VerticalAlignment="Center" BorderBrush="Black" BorderThickness="2"/>
-        <Button Height="30" Width="100" Margin="0,0,0,20" VerticalAlignment="Bottom" Content="Switch" Command="{Binding SwitchCommand}"/>
-    </Grid>
+    <ListBox ItemsSource="{Binding ViewModels}">
+        <ListBox.ItemsPanel>
+            <ItemsPanelTemplate>
+                <WrapPanel/>
+            </ItemsPanelTemplate>
+        </ListBox.ItemsPanel>
+        <ListBox.ItemTemplate>
+            <DataTemplate>
+                <Button MaxHeight="100" MaxWidth="150" MinWidth="75" MinHeight="50" Margin="10" Command="{Binding SwitchCommand}" Style="{StaticResource ButtonStyle}" Content="Test"/>
+            </DataTemplate>
+        </ListBox.ItemTemplate>
+    </ListBox>
 </UserControl>

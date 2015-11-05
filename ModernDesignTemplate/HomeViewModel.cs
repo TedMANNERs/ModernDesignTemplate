@@ -1,6 +1,6 @@
-﻿using System.ComponentModel;
+﻿using System.Collections.Generic;
+using System.ComponentModel;
 using System.Runtime.CompilerServices;
-using System.Windows.Input;
 using ModernDesignTemplate.Annotations;
 
 namespace ModernDesignTemplate
@@ -9,10 +9,9 @@ namespace ModernDesignTemplate
     {
         public HomeViewModel()
         {
-            SwitchCommand = new DelegateCommand(obj => Switch.Invoke(this, new SwitchViewEventArgs(typeof(TestViewModel))), () => true);
         }
 
-        public ICommand SwitchCommand { get; set; }
+        public IEnumerable<ISwitchableViewModel> ViewModels { get; set; }
         public event ViewModelSwitcher.SwitchViewEventHandler Switch;
         public event PropertyChangedEventHandler PropertyChanged;
 
